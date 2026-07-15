@@ -23,5 +23,5 @@ print(f"\nHabilidades: ")
 for ability in data['abilities']:
     print(f"- {ability['ability']['name'].capitalize()}")
 
-print(f'Sprite:\n{data["sprites"]["front_default"]}')
+print(f'\nSprite:\n{data["sprites"]["front_default"]}')
 print(f"\nCry:\n{data['cries']['latest']}")
