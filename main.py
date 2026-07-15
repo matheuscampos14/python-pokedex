@@ -8,7 +8,11 @@ First version:
 """
 
 pokemon = input("Digite o nome do Pokémon: ")
-data = search_pokemon(pokemon)
+try:
+    data = search_pokemon(pokemon)
+except ValueError:
+    print("Pokémon não encontrado.")
+    exit()
 
 print(f"Nome: {data['name'].capitalize()}")
 print(f"ID: {data['id']}")

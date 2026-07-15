@@ -6,8 +6,6 @@ def search_pokemon(pokemon):
     response = requests.get(url, timeout=5)
 
     if response.status_code != 200:
-        raise ValueError(
-            f"Erro {response.status_code}: não foi possível obter os dados do Pokémon."
-        )
+        raise ValueError(f"Pokémon não encontrado")
 
     return response.json()
