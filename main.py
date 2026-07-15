@@ -1,30 +1,27 @@
-import requests
+from pokeapi import search_pokemon
+"""
+Python Pokédex
 
-#pokemon = input("Digite o nome do Pokémon: ")
-pokemon = 'Charizard'
+First version:
+- Consume PokéAPI
+- Display Pokémon information
+"""
 
-url = f"https://pokeapi.co/api/v2/pokemon/{pokemon}"
+pokemon = input("Digite o nome do Pokémon: ")
+data = search_pokemon(pokemon)
 
-response = requests.get(url)
-if response.status_code != 200:
-    raise ValueError(
-        f"Erro {response.status_code}: não foi possível obter os dados do Pokémon."
-    )
-
-dados = response.json()
-
-print(f"Nome: {dados['name'].capitalize()}")
-print(f"ID: {dados['id']}")
+print(f"Nome: {data['name'].capitalize()}")
+print(f"ID: {data['id']}")
 types = []
-for tipo in dados["types"]:
+for tipo in data["types"]:
     types.append(tipo["type"]["name"].capitalize())
 print("Tipo(s): " + ", ".join(types))
-print(f"Altura: {dados['height']/10} m")
-print(f"Peso: {dados['weight']/10} kg")
+print(f"Altura: {data['height']/10} m")
+print(f"Peso: {data['weight']/10} kg")
 
 print(f"\nHabilidades: ")
-for ability in dados['abilities']:
+for ability in data['abilities']:
     print(f"- {ability['ability']['name'].capitalize()}")
 
-print(f'Sprite:\n{dados["sprites"]["front_default"]}')
-print(f"\nCry:\n{dados['cries']['latest']}")
+print(f'Sprite:\n{data["sprites"]["front_default"]}')
+print(f"\nCry:\n{data['cries']['latest']}")
